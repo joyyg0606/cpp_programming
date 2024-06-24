@@ -173,7 +173,7 @@ int main() {
     // cout << "Comparison result (equals): " << equal_result <<endl;
     // cout << "Comparison result (not equals): " << not_equal_result << endl;
 
-    double double1{}, double2{};
+    // double double1{}, double2{};
     // cout << "Enter two doubles separated by a space: ";
     // cin >> double1 >> double2;
     // equal_result = (double1 == double2);
@@ -181,12 +181,33 @@ int main() {
     // cout << "Comparison result (equals): " << equal_result <<endl;
     // cout << "Comparison result (not equals): " << not_equal_result << endl;
 
-    cout << "Enter an integer and a double separated by a space: ";
-    cin >> num1 >> double1;
-    equal_result = (num1 == double1);
-    not_equal_result = (num1 != double1);
-    cout << "Comparison result (equals): " << equal_result << endl;
-    cout << "Comparison result (not equals): " << not_equal_result << endl;
+    // cout << "Enter an integer and a double separated by a space: ";
+    // cin >> num1 >> double1;
+    // equal_result = (num1 == double1);
+    // not_equal_result = (num1 != double1);
+    // cout << "Comparison result (equals): " << equal_result << endl;
+    // cout << "Comparison result (not equals): " << not_equal_result << endl;
+
+// relational operators
+
+    // cout << "Enter 2 integers separated by a space: ";
+    // cin >> num1 >> num2;
+
+    // cout << num1 << " > " << num2 << " : " << (num1 > num2) << endl;
+    // cout << num1 << " >= " << num2 << " : " << (num1 >= num2) << endl;
+    // cout << num1 << " < " << num2 << " : " << (num1 < num2) << endl;
+    // cout << num1 << " <= " << num2 << " : " << (num1 <= num2) << endl;
+
+    const int lower {10};
+    const int upper {20};
+
+    cout << "\nEnter an integer that is greater than " << lower << ":";
+    cin >> num1;
+    cout << num1 << " > " << lower << " is " << (num1 > lower) << endl;
+
+    cout << "\nEnter an integer that is less than or equal to " << upper << ":";
+    cin >> num1;
+    cout << num1 << " <= " << upper << " is " << (num1 <= upper) << endl;
 
 
     return 0;
