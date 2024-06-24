@@ -34,6 +34,7 @@ int main()
     cout << vector_2d.at(1).at(0) << vector_2d.at(1).at(1) << endl;
 
     cout << vector1.at(0) << vector1.at(1) << endl;
+    cout << "vector1 contains " << vector1.size() << " elements" << endl;
     
     return 0;
 }
