@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -65,6 +66,23 @@ int main()
             break;
         default:
             cout << "ok" << endl;
+    }
+
+// for loops
+
+    vector<int>nums {10,20,30,40,50};
+    for (unsigned i{0} ; i < nums.size(); ++i) {
+        cout << nums[i] << endl;
+    }
+
+    for (auto val: {1,2,3,4,4}) {
+        cout << val << endl;
+    }
+
+    for (auto c: "This is a test") {
+        if (c != ' ') {
+            cout << c;
+        }
     }
 
     return 0;
