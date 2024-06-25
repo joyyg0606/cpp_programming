@@ -211,28 +211,56 @@ int main() {
 
 // logical operators
 
-    int num {};
-    const int lower {10};
-    const int upper {20}; 
+    // int num {};
+    // const int lower {10};
+    // const int upper {20}; 
 
-    // determine if an entered integer is between two other integers
-    // assume lower < upper
-    cout << "Enter an integer - the bounds are " << lower << " and " << upper << " : ";
-    cin >> num;
+    // // determine if an entered integer is between two other integers
+    // // assume lower < upper
+    // cout << "Enter an integer - the bounds are " << lower << " and " << upper << " : ";
+    // cin >> num;
 
-    bool within_bounds {false};
+    // bool within_bounds {false};
 
-    within_bounds = (num > lower && num < upper);
-    cout << num << " is between " << lower << " and " << upper << " : " << within_bounds << endl;
+    // within_bounds = (num > lower && num < upper);
+    // cout << num << " is between " << lower << " and " << upper << " : " << within_bounds << endl;
 
-    // determine if an entered integer is outside two other integers
-    // assume lower < upper
-    cout << "\nEnter an integer - the bounds are " << lower << " and " << upper << " : ";
-    cin >> num;
+    // // determine if an entered integer is outside two other integers
+    // // assume lower < upper
+    // cout << "\nEnter an integer - the bounds are " << lower << " and " << upper << " : ";
+    // cin >> num;
 
-    bool outside_bounds {false};
-    outside_bounds = (num < lower || num > upper);
-    cout << num << " is out " << lower << " and " << upper << " : " << outside_bounds << endl;
+    // bool outside_bounds {false};
+    // outside_bounds = (num < lower || num > upper);
+    // cout << num << " is out " << lower << " and " << upper << " : " << outside_bounds << endl;
+
+    // // determine if it is exactly on the boundary
+    // // assume lower < upper
+    // cout << "\nEnter an integer - the bounds are " << lower << " and " << upper << " : ";
+    // cin >> num;
+
+    // bool on_bounds {false};
+    // on_bounds =  (num == lower || num == upper);
+    // cout << num << " is on one of the bounds which are " << lower << " and " << upper << " : " << on_bounds << endl;
+
+    // Determine if you need to wear a coat based on temperature and wind speed
+    bool wear_coat {false};
+    double temperature {};
+    int wind_speed {};
+
+    const int wind_speed_for_coat {25}; // win over this needs coat
+    const double temperature_for_coat {45}; // temp below this needs a coat
+
+    cout << "\nEnter the current temperature in (F): ";
+    cin >> temperature;
+    cout << "Enter wind speed in (mph): ";
+    cin >> wind_speed;
+
+    wear_coat = (temperature < temperature_for_coat || wind_speed > wind_speed_for_coat);
+    cout << "Do you need to wear a coat using OR? " << wear_coat << endl;
+
+    wear_coat = (temperature < temperature_for_coat && wind_speed > wind_speed_for_coat);
+    cout << "Do you need to wear a coat using AND? " << wear_coat << endl;
 
 
     return 0;
