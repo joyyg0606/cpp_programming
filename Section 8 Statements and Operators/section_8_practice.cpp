@@ -152,10 +152,10 @@ int main() {
 
 // testing for equality
 
-    bool equal_result {false};
-    bool not_equal_result {false};
+    // bool equal_result {false};
+    // bool not_equal_result {false};
 
-    int num1{}, num2{};
+    // int num1{}, num2{};
     cout << boolalpha; //will display true/false instead of 1/0
 
     // cout << "Enter two integers separated by a space: ";
@@ -198,16 +198,41 @@ int main() {
     // cout << num1 << " < " << num2 << " : " << (num1 < num2) << endl;
     // cout << num1 << " <= " << num2 << " : " << (num1 <= num2) << endl;
 
+    // const int lower {10};
+    // const int upper {20};
+
+    // cout << "\nEnter an integer that is greater than " << lower << ":";
+    // cin >> num1;
+    // cout << num1 << " > " << lower << " is " << (num1 > lower) << endl;
+
+    // cout << "\nEnter an integer that is less than or equal to " << upper << ":";
+    // cin >> num1;
+    // cout << num1 << " <= " << upper << " is " << (num1 <= upper) << endl;
+
+// logical operators
+
+    int num {};
     const int lower {10};
-    const int upper {20};
+    const int upper {20}; 
 
-    cout << "\nEnter an integer that is greater than " << lower << ":";
-    cin >> num1;
-    cout << num1 << " > " << lower << " is " << (num1 > lower) << endl;
+    // determine if an entered integer is between two other integers
+    // assume lower < upper
+    cout << "Enter an integer - the bounds are " << lower << " and " << upper << " : ";
+    cin >> num;
 
-    cout << "\nEnter an integer that is less than or equal to " << upper << ":";
-    cin >> num1;
-    cout << num1 << " <= " << upper << " is " << (num1 <= upper) << endl;
+    bool within_bounds {false};
+
+    within_bounds = (num > lower && num < upper);
+    cout << num << " is between " << lower << " and " << upper << " : " << within_bounds << endl;
+
+    // determine if an entered integer is outside two other integers
+    // assume lower < upper
+    cout << "\nEnter an integer - the bounds are " << lower << " and " << upper << " : ";
+    cin >> num;
+
+    bool outside_bounds {false};
+    outside_bounds = (num < lower || num > upper);
+    cout << num << " is out " << lower << " and " << upper << " : " << outside_bounds << endl;
 
 
     return 0;
