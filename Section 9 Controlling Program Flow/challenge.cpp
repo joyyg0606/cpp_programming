@@ -13,8 +13,8 @@ int main()
 
     do {
         cout << "\nMENU OPTIONS\nP: print numbers\nM: display mean\nS: display smallest number\nL: display largest number\nQ: quit\n\nEnter your choice: ";
-        cin >> user_choice;
-
+        getline(cin, user_choice);
+        
         if (user_choice == "p" || user_choice == "P") {
 
             if (data_list.size() != 0) {
