@@ -52,6 +52,5 @@ int main() {
     cout << "stooges after calling pass_by_ref3: ";
     print_vector(stooges);
 
-
     return 0;
 }
