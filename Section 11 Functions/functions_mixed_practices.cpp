@@ -2,6 +2,8 @@
 
 using namespace std;
 
+// scope rules
+
 void local_example();
 void global_example();
 void static_local_example();
@@ -27,6 +29,19 @@ void static_local_example() {
     cout << "\nLocal static num is: " << num << " in static_local_example - start" << endl;
     num += 1000;
     cout << "Local static num is: " << num << " in static_local_example - end" << endl;
+}
+
+// how do function calls work?
+
+void func2(int &x, int y, int z) {
+    x += y + z;
+}
+
+int func1(int a, int b) {
+    int result {};
+    result = a + b;
+    func2(result, a, b);
+    return result;
 }
 
 int main () {
@@ -56,6 +71,14 @@ int main () {
     static_local_example();
     static_local_example();
     cout << endl;
+
+// how do function calls work?
+
+    int x{10};
+    int y{20};
+    int z{};
+    z = func1(x,y);
+    cout << z << endl;
 
     return 0;
 
