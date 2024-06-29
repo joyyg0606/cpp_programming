@@ -18,9 +18,11 @@ void mean(vector<long>);
 void smallest_num(vector<long>);
 void largest_num(vector<long>);
 bool checking_if_empty(const vector<long>, const string);
+void find(const vector<long>);
+bool find(const vector<long>, int);
 
 void display_menu() {
-    cout << "\n=== MENU OPTIONS ===\nP: print numbers\nM: display mean\nS: display smallest number\nL: display largest number\nQ: quit\n\nEnter your choice: ";
+    cout << "\n=== MENU OPTIONS ===\nP: print numbers\nM: display mean\nS: display smallest number\nL: display largest number\nF: find a number within the list\nQ: quit\n\nEnter your choice: ";
 }
 
 void change_to_upper (string &user_choice) {
@@ -83,6 +85,26 @@ bool checking_if_empty(const vector<long> data_list, const string user_choice) {
     return true;
 }
 
+void find(const vector<long> data_list) {
+    int target{};
+    cout << "Enter the number to find: ";
+    cin >> target;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+    if (find(data_list, target)) {
+        cout << target << " is in the list" << endl;
+    } else {
+        cout << target << " is not in the list" << endl;
+    }
+}
+
+bool find(const vector<long> data_list, int target) {
+    for (auto num : data_list) {
+        if (num == target) {
+            return true;
+        }
+    }
+    return false;
+}
 
 int main() {
 
@@ -118,6 +140,12 @@ int main() {
         } else if (user_choice == "L") {
             if (checking_if_empty(data_list, user_choice) == false) {
                 largest_num(data_list);
+            } else {
+                cout << "No data - list is empty, please try again." << endl;
+            }
+        } else if (user_choice == "F") {
+            if (checking_if_empty(data_list, user_choice) == false) {
+                find(data_list);
             } else {
                 cout << "No data - list is empty, please try again." << endl;
             }
