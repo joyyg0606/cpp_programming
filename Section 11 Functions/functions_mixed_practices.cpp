@@ -2,6 +2,28 @@
 
 using namespace std;
 
+// recursion - fibonacci
+
+unsigned long long fibonacci(unsigned long long n);
+
+unsigned long long fibonacci(unsigned long long n) {
+    if (n <= 1) {
+        return n; // base cases
+    }
+    return fibonacci(n-1) + fibonacci(n-2); // recursion
+}
+
+// recursion - factorial
+
+unsigned long long factorial(unsigned long long);
+
+unsigned long long factorial(unsigned long long n) {
+    if (n == 0) {
+        return 1;
+    }
+    return n * factorial(n-1); // recursive case
+}
+
 // scope rules
 
 void local_example();
@@ -79,6 +101,19 @@ int main () {
     int z{};
     z = func1(x,y);
     cout << z << endl;
+
+// Recursion - Fibonacci
+
+    cout << fibonacci(5) << endl; //5
+    cout << fibonacci(30) << endl;
+    cout << fibonacci(40) << endl;
+
+// recursion - factorial
+
+    cout << factorial(3) << endl; // 6
+    cout << factorial(8) << endl;
+    cout << factorial(12) << endl;
+    cout << factorial(20) << endl; // big number
 
     return 0;
 
