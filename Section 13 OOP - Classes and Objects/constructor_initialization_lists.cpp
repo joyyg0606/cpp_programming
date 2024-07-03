@@ -19,9 +19,9 @@ Player::Player() : Player{"None",0,0} {
     cout << "No-args constructor" << endl;
 }
 
-// Player::Player(std::string name_val) : name{name_val}, health{0}, xp{0} {
+// Player::Player(std::string name_val) : name{name_val}, health{0}, xp{0} { // constructor initialization list
 // }
-Player::Player(std::string name_val) : Player{name_val,0,0} { // more efficient method
+Player::Player(std::string name_val) : Player{name_val,0,0} { // delegating constructors
     cout << "One-args constructor" << endl;
 }
 
