@@ -6,10 +6,12 @@ using namespace std;
 
 int main() {
     Mystring a{"Hello"};
-    Mystring b;
-    b = a;
+    // Mystring b;
+    // b = a;
+    a = Mystring{"Hola"};
+    a = "Bonjour"; //overloaded constructor then move assingment
 
-    b = "This is a test"; //b.operator=("This is a test");
+    // b = "This is a test"; //b.operator=("This is a test");
 
     Mystring empty;
     Mystring larry("Larry");
@@ -23,5 +25,5 @@ int main() {
     stooge.display();
     empty.display();
 
-
+    return 0;
 }

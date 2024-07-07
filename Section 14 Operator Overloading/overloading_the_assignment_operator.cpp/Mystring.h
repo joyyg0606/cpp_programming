@@ -8,9 +8,11 @@ public:
     Mystring();
     Mystring(const char *s);
     Mystring(const Mystring &source); //copy consturctor
+    Mystring(Mystring &&source); //move constructor
     ~Mystring();
     
     Mystring &operator = (const Mystring &rhs); //copy assignment
+    Mystring &operator = (Mystring &&rhs); //move assignment
 
     void display() const;
     int get_length() const;
