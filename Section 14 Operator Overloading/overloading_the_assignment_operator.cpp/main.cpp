@@ -19,11 +19,15 @@ int main() {
     Mystring stooges;
 
     empty = stooge; //copy assignment operator
+    empty = "Funny"; //move assingment operator, "Funny" is an r-value
 
     empty.display();
     larry.display();
     stooge.display();
     empty.display();
+
+    stooges = "Larry, Move, and Curly";
+    stooges.display();
 
     return 0;
 }
