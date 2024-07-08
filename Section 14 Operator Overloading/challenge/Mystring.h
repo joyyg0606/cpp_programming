@@ -3,8 +3,19 @@
 
 class Mystring
 {
-    friend std::ostream &operator<<(std::ostream &os, const Mystring &rhs);
-    friend std::istream &operator >> (std::istream &in, Mystring &rhs);
+    friend Mystring operator-(const Mystring &obj);
+    friend Mystring operator+(const Mystring &lhs, const Mystring &rhs);
+    friend bool operator==(const Mystring &lhs, const Mystring &rhs);
+    friend bool operator!=(const Mystring &lhs, const Mystring &rhs);
+    friend bool operator<(const Mystring &lhs, const Mystring &rhs);
+    friend bool operator>(const Mystring &lhs, const Mystring &rhs);
+    friend Mystring &operator+=(Mystring &lhs, const Mystring &rhs);
+    friend Mystring operator*(const Mystring &lhs, int n);
+    friend Mystring &operator*=(Mystring &lhs, int n);
+    friend Mystring &operator++(Mystring &obj);
+    friend Mystring operator++(Mystring &obj, int);
+    friend std::ostream &operator << (std::ostream &os, const Mystring &rhs);
+    friend std::istream &operator>>(std::istream &in, Mystring &rhs);
 private:
     char *str; //pointe rto a char[]
 

@@ -100,30 +100,30 @@ Mystring Mystring::operator+(const Mystring &rhs) const {
 }
 
 // Concatenate and assign
-Mystring &Mystring::operator+=(const Mystring &rhs) {
-    *this = *this + rhs;
-    return *this;
+Mystring &operator+=(Mystring &lhs, const Mystring &rhs) {
+    lhs = lhs + rhs;
+    return lhs;
 }
 
 // Repeat
-Mystring Mystring::operator*(int n) const {
+Mystring operator*(const Mystring &lhs, int n) {
     Mystring temp;
-    for (int i = 1; i <= n; i++)
-        temp = temp + *this;
+    for (int i=1; i<=n; i++)
+        temp = temp + lhs;
     return temp;
 }
 
 // Repeat and assign
-Mystring &Mystring::operator*=(int n) {
-    *this = *this * n;
-    return *this;
+Mystring &operator*=(Mystring &lhs, int n) {
+    lhs = lhs * n;
+    return lhs;
 }
 
 // Make uppercase (prefix)
-Mystring &Mystring::operator++() {
-    for (size_t i = 0; i < std::strlen(str); i++)
-        str[i] = std::toupper(str[i]);
-    return *this;
+Mystring &operator++(Mystring &obj) {
+    for (size_t i = 0; i < std::strlen(obj.str); i++)
+        obj.str[i] = std::toupper(obj.str[i]);
+    return obj;
 }
 
 // Make uppercase (postfix)
