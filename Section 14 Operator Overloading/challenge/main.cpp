@@ -27,6 +27,7 @@ int main() {
 
     Mystring s2{"12345"};
     s1 = s2 * 3;
+    cout << s1 << endl;
 
     Mystring s3{"abcdef"};
     s3 *= 5;
