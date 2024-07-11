@@ -1,5 +1,6 @@
 #ifndef _CHECKING_ACCOUNT_H_
 #define _CHECKING_ACCOUNT_H_
+
 #include <iostream>
 #include <string>
 #include "Account.h"
@@ -12,7 +13,7 @@ private:
     static constexpr double per_check_fee = 1.5;
 public:
     Checking_Account(std::string name = def_name, double balance = def_balance);
-    bool withdraw(double);
+    bool withdraw(double amount);
 };
 
 #endif
