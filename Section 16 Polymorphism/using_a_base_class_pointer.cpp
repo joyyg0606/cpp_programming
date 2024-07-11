@@ -11,21 +11,21 @@ public:
 
 class Savings : public Account {
 public:
-    virtual void withdraw(double amount) override {
+    virtual void withdraw(double amount) {
         std::cout << "In Savings::withdraw" << std::endl;
     }
 };
 
 class Checking : public Account {
 public:
-    virtual void withdraw(double amount) override {
+    virtual void withdraw(double amount) {
         std::cout << "In Checking::withdraw" << std::endl;
     }
 };
 
 class Trust : public Account {
 public:
-    virtual void withdraw(double amount) override {
+    virtual void withdraw(double amount) {
         std::cout << "In Trust::withdraw" << std::endl;
     }
 };
