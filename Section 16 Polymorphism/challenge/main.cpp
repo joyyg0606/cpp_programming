@@ -42,4 +42,10 @@ int main() {
     deposit(accounts, 1000);
     withdraw(accounts, 2000);
 
+    display(accounts);
+
+    delete p1;
+    delete p2;
+    delete p3;
+    return 0;
 }
