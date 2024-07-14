@@ -12,8 +12,9 @@ virtual boolChecking_Account::deposit(double amount) {
     return Account::deposit (amount);
 }
 
-std::ostream &operator<<(std::ostream &os, const Checking_Account &account) {
+void Checking_Account::print(std::ostream &os) const override {
+    os.precision(2);
+    os << std::fixed;
     os << "[Checking_Account: " << account.name << ": " << account.balance << "]";
-    return os;
-}
 
+}

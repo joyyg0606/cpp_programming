@@ -22,6 +22,12 @@ bool Account::withdraw(double amount) {
     }
 }
 
+virtual void Account::print(std::ostream &os) const override {
+    os.precision(2);
+    os << std::fixed;
+    os << "[Account: " << name << ": " << balance << "]";
+}
+
 std::ostream &operator<<(std::ostream &os, const Account &account) {
     os << "[Account: " << account.name << ": " << account.balance << "]";
     return os;
