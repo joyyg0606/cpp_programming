@@ -4,8 +4,11 @@
 class IllegalBalanceException
 {
 public:
-    IllegalBalanceException() {}
-    ~IllegalBalanceException() {}
+    IllegalBalanceException() noexcept = default;
+    ~IllegalBalanceException() = default;
+    virtual const char *what() const noexcept {
+        return "Illegal balance exception";
+    }
 };
 
 #endif
