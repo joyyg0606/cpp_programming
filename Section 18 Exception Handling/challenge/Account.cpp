@@ -19,7 +19,7 @@ bool Account::wihtdraw(double amount) {
         balance-=amount;
         return true;
     } else
-        return false;
+        throw InsufficientFundsException{};
 }
 
 void Account::print(std::ostream &os) const {
