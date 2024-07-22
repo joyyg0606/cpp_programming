@@ -20,6 +20,10 @@ struct Tours {
     std::vector<Country>countries;
 };
 
+void ruler() {
+    std::cout << "\n12345678901234567890123456789012345678901234567890\n" << std::endl;
+}
+
 int main() {
 
     Tours tours 
@@ -52,6 +56,20 @@ int main() {
                 },
             }
         };
+
+        const int total_width {70};
+        const int field1_width {20};
+        const int field2_width {20};
+        const int field3_width {15};
+        const int field4_width {15};
+
+        ruler ();
+        int title_length = tours.title.length();
+        std::cout << std::setw((total_width - title_length) / 2) << "" << tours.title << std::endl;
+        std::cout << std::endl;
+        std::cout << std::setw(field1_width) << std::left << "Country" << std::setw(field2_width) << std::left << "City" << std::setw(field3_width) << std::right << "Population" << std::setw(field4_width) << std::right << "Price" << std::endl;
+
+        std::cout << std::setw(total_width)
 
     std::cout << tours.title << std::endl;
     for(auto country : tours.countries) {
