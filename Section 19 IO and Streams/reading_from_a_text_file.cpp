@@ -13,10 +13,15 @@ int main() {
         return 1;
     }
 
-    in_file >> line >> num >> total;
-    std::cout << line << std::endl;
-    std::cout << num << std::endl;
-    std::cout << total << std::endl;
+    std::cout << std::setw(10) << std::left << line
+              << std::setw(10) << num
+              << std::setw(10) << total
+              << std::endl;
+
+    // in_file >> line >> num >> total;
+    // std::cout << line << std::endl;
+    // std::cout << num << std::endl;
+    // std::cout << total << std::endl;
     in_file.close();
 
     return 0;
