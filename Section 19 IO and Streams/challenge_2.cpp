@@ -1,7 +1,11 @@
 #include <iostream>
 #include <iomanip>
 
-
+void print_footer(double average) {
+    std::cout << std::setw(20) << std::setfill('-') << "" << std::endl;
+    std::cout << std::setfill(' ');
+    std::cout << std::setw(15) << std::left << "Average score" << std::setw(5) << std::right << average;
+}
 
 void print_student(const std::string &student, int score) {
     std::cout << std::setprecision(1) << std::fixed;
