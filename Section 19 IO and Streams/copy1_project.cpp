@@ -18,5 +18,8 @@ int main() {
     while (std::getline(in_file, line))
         out_file << line << std::endl;
 
-        std::cout << "File copied" << std::endl;
+    std::cout << "File copied" << std::endl;
+    in_file.close();
+    out_file.close();
+    return 0;
 }
