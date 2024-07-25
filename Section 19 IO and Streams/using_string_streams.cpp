@@ -1,3 +1,4 @@
+#include <iostream>
 #include <iomanip>
 #include <sstream>
 #include <string>
@@ -8,40 +9,44 @@ int main() {
     double total{};
     std::string name{};
 
+    // String containing information to be parsed
     std::string info {"Moe 100 1234.5"};
     std::istringstream iss {info};
 
+    // Parse the information
     iss >> name >> num >> total;
     std::cout << std::setw(10) << std::left << name << std::setw(5) << num << std::setw(10) << total << std::endl;
 
     std::cout << "\n=======" << std::endl;
 
+    // Format and output the information using ostringstream
     std::ostringstream oss {};
-    oss << std::setw(10) << std::left << name << std::set(5) << num << std::setw(10) << total << std::endl;
+    oss << std::setw(10) << std::left << name << std::setw(5) << num << std::setw(10) << total << std::endl;
     std::cout << oss.str() << std::endl;
 
-    std::cout << "\n Data validation" << std::endl;
+    std::cout << "\nData validation" << std::endl;
 
+    // Data validation loop
     int value{};
     std::string entry {};
     bool done = false;
     do {
-        std::cout << "please enter an integer: ";
+        std::cout << "Please enter an integer: ";
         std::cin >> entry;
         std::istringstream validator {entry};
-        if(validator >> value)
+        if (validator >> value) {
             done = true;
-        else
-            std::cout << "Sorry, that's not an integer" << std::endl;
+        } else {
+            std::cout << "Sorry, that's not an integer." << std::endl;
+        }
 
-        //discards the input buffer
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        // Discard the input buffer
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     } while (!done);
 
-    std::cout << "you entered the integer: " << value << std::endl;
+    std::cout << "You entered the integer: " << value << std::endl;
 
     std::cout << std::endl;
 
     return 0;
-
 }
