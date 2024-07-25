@@ -18,7 +18,15 @@ int main() {
     std::string line{};
     int line_number {0};
     while (getline(in_file, line)) {
-        ++line_number;
-        out_file << std::set(7) << std::left << line_number << line << std::endl;
+        if(line == "")
+            out_file << std::endl;
+        else {
+            ++line_number;
+            out_file << std::set(7) << std::left << line_number << line << std::endl;
+        }
     }
+    std::cout << "\nCopy complete" << std::endl;
+    in_file.close();
+    out_file.close();
+    return 0;
 }
