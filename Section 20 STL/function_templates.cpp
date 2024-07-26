@@ -19,12 +19,31 @@ struct Person {
     }
 };
 
+std::ostream &operator<<(std::ostream &os, const Person &p) {
+    os << p.name;
+    return os;
+}
+
+void my_swap(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
 int main() {
+    int x{100};
+    int y{200};
+    std::cout << x << ", " << y << std::endl;
+    my_swap(x,y);
+    std::cout << x << ", " << y << std::endl;
+
     Person p1 {"Curly", 50};
     Person p2 {"Moe", 30};
     
     Person p3 = min(p1, p2);
     std::cout << p3.name << " is younger" << std::endl;
+
+    func(p1, p2);
 
     std::cout << min<int>(2,3) << std::endl; //2
     std::cout << min(2,3) << std::endl; //2
