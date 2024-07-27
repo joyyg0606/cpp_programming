@@ -47,7 +47,48 @@ void test2() {
         it++;
     }
     display(nums1);
+}
 
+void test3() {
+    std::cout << "\n===================" << std::endl;
+    std::vector<int> nums1 {1,2,3,4,5};
+
+    std::vector<int>::const_iterator it1 = nums1.begin();
+
+    while (it1 != nums1.end()) {
+        std::cout << *it1 << std::endl;
+        it1++;
+    }
+    it1 = nums1.begin();
+    while (it1 != nums1.end()) {
+        // *it1 = 0; //compiler error
+        it1++;
+    }
+}
+
+void test4() {
+    std::vector<int> vec {1,2,3,4};
+    auto it1 = vec.rbegin();
+    while (it1 != vec.rend()) {
+        std::cout << *it1 << std::endl;
+        it1++;
+    }
+    std::list<std::string> name {"a", "b", "c"};
+    auto it2 = name.crbegin();
+    std::cout << *it2 << std::endl;
+    it2++;
+    std::cout << *it2 << std::endl;
+
+    std::map<std::string, std::string> favorites {
+        {"Frank", "C++"},
+        {"Bill", "Java"},
+        {"James", "Haskell"}
+    };
+    auto it3 = favorites. begin();
+    while (it3 != favorites.end()) {
+        std::cout << it3->first << " : " << it3 -> second << std::endl;
+        it3++;
+    }
 }
 
 int main() {
