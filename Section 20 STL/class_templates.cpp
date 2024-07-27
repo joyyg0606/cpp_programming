@@ -44,7 +44,7 @@ int main() {
     My_Pair<int, double> p2{124, 13.6};
 
     std::cout << p1.first << ", " << p1.second << std::endl;
-    std::cout << p2.first << ", p2.second << std::endl;
+    std::cout << p2.first << ", " << p2.second << std::endl;
 
     return 0;
 }
