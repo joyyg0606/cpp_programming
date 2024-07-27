@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
 
-template <size_t N>
+template <typename T, int N>
 class Array {
     int size {N};
-    int values[N];
+    T values[N];
 
-    friend std::ostream &operator<<(std::ostream &os, const Array<N> &arr) {
+    friend std::ostream &operator<<(std::ostream &os, const Array<T, N> &arr) {
         os << "[ ";
         for (const auto &val : arr.values)
             os << val << " ";
@@ -15,24 +15,24 @@ class Array {
     }
 public:
     Array() = default;
-    Array(int init_val) {
+    Array(T init_val) {
         for (auto &item : values)
             item = init_val;
     }
-    void fill(int val) {
+    void fill(T val) {
         for (auto &item : values)
             item = val;
     }
     int get_size() const {
         return size;
     }
-    int &operator[](int index) {
+    T &operator[](int index) {
         return values[index];
     }
 };
 
 int main() {
-    Array<5> nums;
+    Array<int, 5> nums;
     std::cout << "The size of nums is: " << nums.get_size() << std::endl;
     std::cout << nums << std::endl;
 
@@ -47,9 +47,19 @@ int main() {
     nums[4] = 2000;
     std::cout << nums << std::endl;
 
-    Array<100> nums2 {1};
+    Array<int, 100> nums2 {1};
     std::cout << "The size of nums2 is: " << nums2.get_size() << std::endl;
     std::cout << nums2 << std::endl;
+
+    Array<std::string, 10> strings(std::string{"Frank"});
+    std::cout << "The size of strings is: " << strings.get_size() << std::endl;
+    std::cout << strings << std::endl;
+
+    strings[0] = std::string{"Larry"};
+    std::cout << strings << std::endl;
+
+    strings.fill(std::string{"X"});
+    std::cout << strings << std::endl;
 
     return 0;
 }
