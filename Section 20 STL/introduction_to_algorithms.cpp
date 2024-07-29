@@ -67,6 +67,29 @@ void count_if_test() {
 
     num = std::count_if(vec.begin(), vec.end(), [](int x) { return x % 2 != 0; });
     std::cout << num << " odd numbers found" << std::endl;
+
+    num = std::count_if(vec.begin(), vec.end(), [](int x) {return x>=5;});
+    std::cout << num << " numbers are >= 5" << std::endl;
+}
+
+void replace_test() {
+    std::cout << "\n=====================================" << std::endl;
+
+    std::vector<int> vec {1,2,3,4,5,1,2,1};
+    for (auto i: vec) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    std::replace(vec.begin(), vec.end(), 1, 100);
+    for (auto i:vec) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+}
+
+void all_of_test() {
+    
 }
 
 int main() {
