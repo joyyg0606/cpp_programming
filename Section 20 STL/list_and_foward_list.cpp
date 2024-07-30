@@ -58,5 +58,31 @@ void test2() {
     display(l);
     std::cout << "Size: " << l.size() << std::endl;
 
-    std
+    std::cout << "Front: " << l.front() << std::endl;
+    std::cout << "Back: " << l.back() << std::endl;
+
+    l.clear();
+    display(l);
+    std::cout << "Size: " << l.size() << std::endl;
+}
+
+void test3() {
+    std::cout << "Test 3" << std::endl;
+
+    std::list<int> l {1,2,3,4,5,6,7,8,9,10};
+    display(l);
+
+    l.resize(5);
+    display(l);
+
+    l.resize(10);
+    display(l);
+
+    std::list<Person> persons;
+    persons.resize(5);
+    display(persons);
+}
+
+void test4() {
+    std::cout << "Test 4" << std::endl;
 }
