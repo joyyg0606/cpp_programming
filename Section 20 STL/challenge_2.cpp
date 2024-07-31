@@ -12,22 +12,21 @@ class Song {
     int rating;
 public:
     Song() = default;
-    Song(std::string name, std::string artist, int rating) : name{name}, artist{artist}, rating{rating} {}
-    std::string get_name() const {
+    Song(std::string name, std::string artist, int rating) : name{std::move(name)}, artist{std::move(artist)}, rating{rating} {}
+    std::string getName() const {
         return name;
     }
-    std::string get_artist() const {
+    std::string getArtist() const {
         return artist;
     }
-    int get_rating() const {
+    int getRating() const {
         return rating;
     }
     bool operator<(const Song &rhs) const {
-        return this-> name < rhs.name;
+        return name < rhs.name;
     }
-
     bool operator==(const Song &rhs) const {
-        return this->name == rhs.name;
+        return name == rhs.name;
     }
 };
 
@@ -36,93 +35,103 @@ std::ostream &operator<<(std::ostream &os, const Song &s) {
     return os;
 }
 
-void display_menu() {
-    std::cout << "\nF - play first song" << std::endl;
-    std::cout << "N - play next song" << std::endl;
-    std::cout << "P - play previous song" << std::endl;
-    std::cout << "A - add and play a new song at current location" << std::endl;
-    std::cout << "L - list the current playlist" << std::endl;
+void displayMenu() {
+    std::cout << "\nF - Play first song" << std::endl;
+    std::cout << "N - Play next song" << std::endl;
+    std::cout << "P - Play previous song" << std::endl;
+    std::cout << "A - Add and play a new song at current location" << std::endl;
+    std::cout << "L - List the current playlist" << std::endl;
     std::cout << "============================================================" << std::endl;
     std::cout << "Enter a selection (Q to quit): ";
 }
 
-void play_current_song(const Song &song) {
+void playCurrentSong(const Song &song) {
     std::cout << "Playing: " << std::endl;
     std::cout << song << std::endl;
 }
 
-void display_playlist(const std::list<Song> &playlist, const Song &current_song) {
-    for (const Song &song:playlist) {
+void displayPlaylist(const std::list<Song> &playlist, const Song &currentSong) {
+    for (const auto &song : playlist) {
         std::cout << song << std::endl;
     }
     std::cout << "Current song: " << std::endl;
-    std::cout << current_song << std::endl;
+    std::cout << currentSong << std::endl;
 }
 
 int main() {
     std::list<Song> playlist{
-        {"god's plan", "Drake", 5},
-        {"Never be the same", "camila cabello", 5},
-        {"Pray for me", "The weekend and k. lamar", 4},
-        {"The middle", "zedd, maren morris", 5},
-        {"wait", "Maroone 5", 4},
-        {"Whatever it takes", "imagine dragons", 3}
+        {"God's Plan", "Drake", 5},
+        {"Never Be The Same", "Camila Cabello", 5},
+        {"Pray For Me", "The Weeknd and K. Lamar", 4},
+        {"The Middle", "Zedd, Maren Morris", 5},
+        {"Wait", "Maroon 5", 4},
+        {"Whatever It Takes", "Imagine Dragons", 3}
     };
 
-    std::list<Song>::iterator current_song = playlist.begin();
-    display_playlist(playlist, *current_song);
+    auto currentSong = playlist.begin();
+    displayPlaylist(playlist, *currentSong);
 
     char selection{};
     do {
-        display_menu();
+        displayMenu();
         std::cin >> selection;
         selection = std::toupper(selection);
-        if(selection == 'F') {
-            std::cout << "Playing first song" << std::endl;
-            current_song = playlist.begin();
-            play_current_song(*current_song);
-        }
-        else if (selection == 'N') {
-            std::cout << "Playing next song" << std::endl;
-            current_song++;
-            if(current_song == playlist.end()) {
-                std::cout << "Wrapping to start of playlist" << std::endl;
-                current_song = playlist.begin();
+        switch (selection) {
+            case 'F':
+                std::cout << "Playing first song" << std::endl;
+                currentSong = playlist.begin();
+                playCurrentSong(*currentSong);
+                break;
+            case 'N':
+                std::cout << "Playing next song" << std::endl;
+                if (++currentSong == playlist.end()) {
+                    std::cout << "Wrapping to start of playlist" << std::endl;
+                    currentSong = playlist.begin();
+                }
+                playCurrentSong(*currentSong);
+                break;
+            case 'P':
+                std::cout << "Playing previous song" << std::endl;
+                if (currentSong == playlist.begin()) {
+                    std::cout << "Wrapping to end of playlist" << std::endl;
+                    currentSong = playlist.end();
+                }
+                --currentSong;
+                playCurrentSong(*currentSong);
+                break;
+            case 'A': {
+                std::string name, artist;
+                int rating;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Adding and playing new song" << std::endl;
+                std::cout << "Enter song name: ";
+                std::getline(std::cin, name);
+                std::cout << "Enter song artist: ";
+                std::getline(std::cin, artist);
+                std::cout << "Enter your rating (1-5): ";
+                while (!(std::cin >> rating) || rating < 1 || rating > 5) {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    std::cout << "Invalid rating. Enter your rating (1-5): ";
+                }
+                currentSong = playlist.insert(currentSong, Song{name, artist, rating});
+                playCurrentSong(*currentSong);
+                break;
             }
-            play_current_song(*current_song);
+            case 'L':
+                std::cout << std::endl;
+                displayPlaylist(playlist, *currentSong);
+                break;
+            case 'Q':
+                std::cout << "Quitting" << std::endl;
+                break;
+            default:
+                std::cout << "Invalid selection, try again..." << std::endl;
+                break;
         }
-        else if(selection == 'P') {
-            std::cout << "Playing previous song" << std::endl;
-            if (current_song == playlist.begin()) {
-                std::cout << "Wrapping to end of playlist" << std::endl;
-                current_song = playlist.end();
-            }
-            current_song--;
-            play_current_song(*current_song);
-         } else if(selection == 'A') {
-            std::string name, artist;
-            int rating;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-            std::cout << "Adding and playing new song" << std::endl;
-            std::cout << "enter song name: ";
-            getline(std::cin, name);
-            std::cout << "Enter song artist: ";
-            getline(std::cin, artist);
-            std::cout << "Enter your rating (1-5): ";
-            std::cin >> rating;
-            playlist.insert(current_song, Song{name, artist, rating});
-            current_song--;
-            play_current_song(*current_song);
-         } else if(selection == 'L') {
-            std::cout << std::endl;
-            display_playlist(playlist, *current_song);
-         } else if(selection == 'Q')
-            std::cout << "Quitting" << std::endl;
-        else
-            std::cout << "invalid, try again...";
     } while (selection != 'Q');
-    
+
     std::cout << "Thanks for listening!" << std::endl;
     return 0;
 }
