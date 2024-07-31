@@ -85,4 +85,10 @@ void test3() {
 
 void test4() {
     std::cout << "Test 4" << std::endl;
+
+    std::list<int> l {1,2,3,4,5,6,7,8,9,10};
+    display(l);
+
+    auto it = std::find(l.begin(), l.end(), 5);
+    if()
 }
