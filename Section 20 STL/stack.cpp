@@ -36,6 +36,11 @@ int main() {
     display(s);
 
     std::cout << "Size: " << s.size() << std::endl;
-    
 
+    s.push(10);
+    display(s);
+
+    s.top() = 100;
+    display(s);
+    return 0;
 }
