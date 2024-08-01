@@ -40,7 +40,14 @@ void part1() {
     std::string word;
     std::ifstream in_file{"../words.txt"};
     if (in_file) {
-
+        while (std::getline(in_file, line)) {
+            //std::cout << line;
+            std::stringstream ss(line);
+            while (ss >> word) {
+                word = clean_string(word);
+                words[word]++;
+            }
+        }
         in_file.close();
         display_words(words);
     } else {
@@ -54,7 +61,15 @@ void part2() {
     std::string word;
     std::ifstream in_file{"../words.txt"};
     if (in_file) {
-
+        int line_number = 0;
+        while(std::getline(in_file, line)) {
+            line_number++;
+            std::stringstream ss(line);
+            while(ss >> word) {
+                word = clean_string(word);
+                words[word].insert(line_number);
+            }
+        }
         in_file.close();
         display_words(words);
     } else {
