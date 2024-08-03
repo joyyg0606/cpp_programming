@@ -55,6 +55,31 @@ int main() {
     std::for_each(vec2.begin(), vec2.end(), d2);
     std::cout << std::endl;
 
+    std::cout << "test 3" << std::endl;
+    std::for_each(vec1.begin(), vec1.end(), [](int x) {std::cout << x * x << " ";});
+    std::cout << std::endl;
 
+    std::for_each(vec1.begin(), vec1.end(), [](int x) {std::cout << x * 10 << " ";});
+    std::cout << std::endl;
+
+    std::for_each(vec1.begin(), vec1.end(), [](int x) {std::cout << x << " ";});
+    std::cout << std::endl;
+
+    std::for_each(vec2.begin(), vec2.end(), [](std::string s) {std::cout << s << " ";});
+    std::cout << std::endl;
+
+    std::cout << "test 4" << std::endl;
+    Multiplier mult{100};
+    vec1 = {1,2,3,4};
+
+    std::transform(vec1.begin(), vec1.end(), vec1.begin(), mult);
+    std::for_each(vec1.begin(), vec1.end(), d1);
+    std::cout << std::endl;
+
+    vec1 = {1,2,3,4,};
+    std::transform(vec1.begin(), vec1.end(), vec1.begin(), [](int x) {return x * 100;});
+    std::for_each(vec1.begin(), vec1.end(), [](int x) {std::cout << x << " ";});
+
+    std::cout << std::endl;
     return 0;
 }
