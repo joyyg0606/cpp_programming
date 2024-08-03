@@ -54,6 +54,49 @@ void test2() {
     std::cout << "num1: " << num1 << " num2: " << num2 << std::endl;
 }
 
+void test3() {
+    std::cout << "test 3" << std::endl;
+    Person stooge {"Larry" , 18};
+    std::cout << stooge << std::endl;
+
+    auto l4 = [] (Person p) {
+        std::cout << p << std::endl;
+    };
+    l4(stooge);
+
+    auto l5 = [](const Person &p) {
+        std::cout << p << std::endl;
+    };
+    l5(stooge);
+
+    auto l6 = [] (Person &p) {
+        p.set_name("Frank");
+        p.set_age(36);
+        std::cout << p << std::endl;
+    };
+
+    std::cout << stooge << std::endl;
+}
+
+void filter_vector(const std::vector<int> &vec, std::function<bool(int)> func) {
+    std::cout << "[ ";
+    for(int i:vec) {
+        if(func(i))
+            std::cout << i << " ";
+    }
+    std::cout << "]" << std::endl;
+}
+
+void test4() {
+    std::cout << "Test 4" << std::endl;
+    std::vector<int> nums {10,20,30,40,50,60,70,80,90,100};
+
+    filter_vector(nums, [](int x) {return x> 50;});
+    filter_vector(nums, [](int x) {return x> 30;});
+    filter_vector(nums, [](int x) {return x>= 30 && x <= 60;});
+}
+
+
 int main() {
     test1();
     test2();
