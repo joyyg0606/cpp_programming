@@ -25,7 +25,7 @@ std::ostream &operator<<(std::ostream &os, const Person &rhs) {
 }
 
 void test1() {
-    std::cout << " test 1" << std::endl;
+    std::cout << "test 1" << std::endl;
     [] () {std::cout << "HI" << std::endl;}();
     [] (int x) {std::cout << x << std::endl;}(100);
     [](int x, int y) {std::cout << x + y << std::endl;}(100,200);
@@ -74,13 +74,14 @@ void test3() {
         p.set_age(36);
         std::cout << p << std::endl;
     };
+    l6(stooge);
 
     std::cout << stooge << std::endl;
 }
 
 void filter_vector(const std::vector<int> &vec, std::function<bool(int)> func) {
     std::cout << "[ ";
-    for(int i:vec) {
+    for(int i : vec) {
         if(func(i))
             std::cout << i << " ";
     }
@@ -91,11 +92,61 @@ void test4() {
     std::cout << "Test 4" << std::endl;
     std::vector<int> nums {10,20,30,40,50,60,70,80,90,100};
 
-    filter_vector(nums, [](int x) {return x> 50;});
-    filter_vector(nums, [](int x) {return x> 30;});
-    filter_vector(nums, [](int x) {return x>= 30 && x <= 60;});
+    filter_vector(nums, [](int x) {return x > 50;});
+    filter_vector(nums, [](int x) {return x > 30;});
+    filter_vector(nums, [](int x) {return x >= 30 && x <= 60;});
 }
 
+auto make_lambda() {
+    return [] () {std::cout << "This lambda was made using the make_lambda function";};
+}
+
+void test5() {
+    std::cout << "test 5" << std::endl;
+    auto l5 = make_lambda();
+    l5();
+}
+
+void test6() {
+    std::cout << "test 6" << std::endl;
+    auto l6 = [](auto x, auto y) {
+        std::cout << "x: " << x << " y: " << y << std::endl;
+    };
+
+    l6(10, 20);
+    l6(100.3, 200);
+    l6(12.5, 16.53);
+
+    l6(Person("Larry", 18), Person("Curly", 33));
+}
+
+void test7() {
+    std::cout << "test 7" << std::endl;
+
+    std::vector<Person> stooges {
+        {"Larry", 35},
+        {"Moe", 21},
+        {"Curly", 25}
+    };
+
+    std::sort(begin(stooges), end(stooges), [](const Person &p1, const Person &p2) {
+        return p1.get_name() < p2.get_name();
+    });
+
+    std::for_each(begin(stooges), end(stooges), [](const Person &p) {
+        std::cout << p << std::endl;
+    });
+
+    std::cout << std::endl;
+
+    std::sort(begin(stooges), end(stooges), [](const Person &p1, const Person &p2) {
+        return p1.get_age() < p2.get_age();
+    });
+
+    std::for_each(begin(stooges), end(stooges), [](const Person &p) {
+        std::cout << p << std::endl;
+    });
+}
 
 int main() {
     test1();
