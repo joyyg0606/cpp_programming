@@ -113,6 +113,29 @@ void test6() {
     std::cout << z << std::endl;
 }
 
+void test7() {
+    std::cout << "Test 7" << std::endl;
+
+    int x{100};
+    int y{200};
+    int z{300};
+
+    auto l = [&, x, z] () mutable {
+        x += 100;
+        y += 100;
+        z += 100;
+        std::cout << x << std::endl;
+        std::cout << y << std::endl;
+        std::cout << z << std::endl;
+    };
+    l();
+
+    std::cout << "\n";
+    std::cout << x << std::endl;
+    std::cout << y << std::endl;
+    std::cout << z << std::endl;
+}
+
 int main() {
     test1();
     test2();
@@ -120,5 +143,6 @@ int main() {
     test4();
     test5();
     test6();
+    test7();
     return 0;
 }
