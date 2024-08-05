@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 int global_x {1000};
 
@@ -135,6 +136,29 @@ void test7() {
     std::cout << y << std::endl;
     std::cout << z << std::endl;
 }
+
+class Person {
+    friend std::ostream &operator<<(std::ostream &os, const Person &rhs) {
+        os << "Person[name: " << rhs.name << ", age: " << rhs.age << "]";
+        return os;
+    }
+private:
+    std::string name;
+    int age;
+public:
+    Person() = default;
+    Person(std::string name, int age) : name{name}, age{age} {}
+    Person(const Person &p) = default;
+    ~Person() = default;
+    std::string get_name() const {return name;}
+    void set_name(std::string name) {this->name = name;}
+    int get_age() const {return age;}
+    void set_age(int age) {this->age = age;}
+
+    auto change_person1() { return [this] (std::string new_name, int new_age) { name = new_name; age = new_age; }; }
+    auto change_person2() { return [=] (std::string new_name, int new_age) mutable { name = new_name; age = new_age; }; }
+    auto change_person3() { return [&] (std::string new_name, int new_age) { name = new_name; age = new_age; }; }
+};
 
 int main() {
     test1();
