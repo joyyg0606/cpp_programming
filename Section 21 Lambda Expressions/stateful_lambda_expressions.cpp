@@ -150,15 +150,112 @@ public:
     Person(std::string name, int age) : name{name}, age{age} {}
     Person(const Person &p) = default;
     ~Person() = default;
-    std::string get_name() const {return name;}
-    void set_name(std::string name) {this->name = name;}
-    int get_age() const {return age;}
-    void set_age(int age) {this->age = age;}
+    std::string get_name() const { return name; }
+    void set_name(std::string name) { this->name = name; }
+    int get_age() const { return age; }
+    void set_age(int age) { this->age = age; }
 
-    auto change_person1() { return [this] (std::string new_name, int new_age) { name = new_name; age = new_age; }; }
-    auto change_person2() { return [=] (std::string new_name, int new_age) mutable { name = new_name; age = new_age; }; }
-    auto change_person3() { return [&] (std::string new_name, int new_age) { name = new_name; age = new_age; }; }
+    auto change_person1() { return [this](std::string new_name, int new_age) { name = new_name; age = new_age; }; }
+    auto change_person2() { return [=](std::string new_name, int new_age) mutable { name = new_name; age = new_age; }; }
+    auto change_person3() { return [&](std::string new_name, int new_age) { name = new_name; age = new_age; }; }
 };
+
+void test8() {
+    std::cout << "test 8" << std::endl;
+
+    Person person{"Larry", 18};
+    std::cout << person << std::endl;
+
+    auto change_person1 = person.change_person1();
+    change_person1("Moe", 30);
+    std::cout << person << std::endl;
+
+    auto change_person2 = person.change_person2();
+    change_person2("Curly", 25);
+    std::cout << person << std::endl;
+
+    auto change_person3 = person.change_person3();
+    change_person3("Frank", 34);
+    std::cout << person << std::endl;
+}
+
+class Lambda {
+private:
+    int y;
+public:
+    Lambda(int y) : y{y} {}
+
+    void operator()(int x) const {
+        std::cout << x + y << std::endl;
+    }
+};
+
+void test9() {
+    std::cout << "test 9" << std::endl;
+
+    int y{100};
+
+    Lambda lambda1(y);
+    auto lambda2 = [y](int x) { std::cout << x + y << std::endl; };
+
+    lambda1(200);
+    lambda2(200);
+}
+
+class People {
+    std::vector<Person> people;
+    int max_people;
+public:
+    People(int max=10) : max_people(max) {}
+    People(const People &people) = default;
+    void add(std::string name, int age) {
+        people.emplace_back(name, age);
+    }
+    void set_max_people(int max) {
+        max_people = max;
+    }
+    int get_max_people() const {
+        return max_people;
+    }
+
+    std::vector<Person> get_people(int max_age) {
+        std::vector<Person> result;
+        int count{0};
+        std::copy_if(people.begin(), people.end(), std::back_inserter(result),
+                     [this, &count, max_age](const Person &p) { return p.get_age() > max_age && ++count <= max_people; });
+        return result;
+    }
+};
+
+void test10() {
+    std::cout << "test 10" << std::endl;
+
+    People friends;
+    friends.add("Larry", 18);
+    friends.add("Curly", 25);
+    friends.add("Moe", 35);
+    friends.add("Frank", 25);
+    friends.add("James", 78);
+
+    auto result = friends.get_people(17);
+    std::cout << std::endl;
+    for(const auto &p: result)
+        std::cout << p << std::endl;
+
+    friends.set_max_people(3);
+
+    result = friends.get_people(17);
+
+    std::cout << std::endl;
+    for(const auto &p: result)
+        std::cout << p << std::endl;
+
+    result = friends.get_people(50);
+
+    std::cout << std::endl;
+    for (const auto &p: result)
+        std::cout << p << std::endl;
+}
 
 int main() {
     test1();
@@ -168,5 +265,8 @@ int main() {
     test5();
     test6();
     test7();
+    test8();
+    test9();
+    test10();
     return 0;
 }
