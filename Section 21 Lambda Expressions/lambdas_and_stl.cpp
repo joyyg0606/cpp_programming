@@ -143,7 +143,61 @@ void test6() {
 }
 
 class Password_Validator1 {
-    
+private:
+    char restricted_symbol {'$'};
+public:
+    bool is_valid(std::string password) {
+        return std::all_of(password.begin(), password.end(), [this] (char character) {
+            return character != restricted_symbol;
+        });
+    }
+};
+
+class Password_Validator2 {
+private:
+    std::vector<char> restricted_symbols {'!', '$', '+'};
+public:
+    bool is_valid(std::string password) {
+        return std::none_of(password.begin(), password.end(), [this](char character) {
+            return std::any_of(restricted_symbols.begin(), restricted_symbols.end(), [character](char symbol) {
+                return character == symbol;
+            });
+        });
+    }
+};
+
+void test7() {
+    std::cout << "test 7" << std::endl;
+
+    std::string password {"yeljkelo#"};
+    Password_Validator1 pv1;
+
+    if(pv1.is_valid(password))
+        std::cout << "The password " << password << " is valid!" << std::endl;
+    else
+        std::cout << "The password " << password << " is not valid!" << std::endl;
+
+    password = "yeljkelo#";
+    if (pv1.is_valid(password))
+        std::cout << "The password " << password << " is valid!" << std::endl;
+    else
+        std::cout << "The password " << password << " is not valid!" << std::endl;
+
+    std::cout << "\n";
+
+    password = "C++Rocks!";
+    Password_Validator2 pv2;
+
+    if (pv2.is_valid(password))
+        std::cout << "The password " << password << " is valid!" << std::endl;
+    else
+        std::cout << "The password " << password << " is not valid!" << std::endl;
+
+    password = "CpfdoJ!";
+    if(pv2.is_valid(password))
+        std::cout << "The password " << password << " is valid!" << std::endl;
+    else
+        std::cout << "The password " << password << " is not valid!" << std::endl;
 }
 
 int main() {
@@ -153,5 +207,6 @@ int main() {
     test4();
     test5();
     test6();
+    test7();
     return 0;
 }
