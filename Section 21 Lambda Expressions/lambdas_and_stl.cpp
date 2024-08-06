@@ -142,6 +142,10 @@ void test6() {
     std::cout << in_between(nums, 5, 7) << std::endl;
 }
 
+class Password_Validator1 {
+    
+}
+
 int main() {
     test1();
     test2();
